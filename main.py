@@ -1,5 +1,6 @@
 import pygame
 import random
+from PIL import Image
 
 pygame.init()
 
@@ -14,6 +15,23 @@ pygame.display.set_icon(icon)
 target_img = pygame.image.load("image\\t2.png")
 target_width = 50
 target_height = 50
+
+
+def load_gif(filename):
+    """Загружает GIF и возвращает список кадров."""
+    image = Image.open(filename)
+    frames = []
+
+    try:
+        while True:
+            # Преобразуем кадр в Pygame Surface
+            frame = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
+            frames.append(frame)
+            image.seek(image.tell() + 1)  # Переход к следующему кадру
+    except EOFError:
+        pass
+
+    return frames
 
 
 def show_continue_prompt():
@@ -35,6 +53,10 @@ def show_continue_prompt():
                 elif event.key == pygame.K_n:  # N для выхода
                     return False
 
+
+# Загрузка GIF с конфетти и кубком
+confetti_gif_frames = load_gif("path_to_your_confetti_gif.gif")
+cup_gif_frames = load_gif("path_to_your_cup_gif.gif")
 
 target_x = random.randint(0, SCREEN_WIDTH - target_width)
 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
@@ -59,7 +81,7 @@ while running:
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 
-            if hit_count >= 5:
+            if hit_count >= 10:
                 game_won = True
                 display_win_message = True
 
@@ -68,23 +90,32 @@ while running:
             text = font.render("Ты победил!", True, (255, 0, 0))
             screen.blit(text, (SCREEN_WIDTH // 2 - text.get_width() // 2, SCREEN_HEIGHT // 2 - text.get_height() // 2))
             pygame.display.update()
-            pygame.time.delay(3000)  # Задержка для отображения сообщения победы
+            pygame.time.delay(2000)  # Задержка для отображения сообщения победы
             display_win_message = False  # Скрываем сообщение победы
 
-        # Запрос на продолжение игры
-        if not show_continue_prompt():
-            running = False
-        else:
-            # Сбросим счетчик и переменные для новой игры
-            hit_count = 0
-            target_x = random.randint(0, SCREEN_WIDTH - target_width)
-            target_y = random.randint(0, SCREEN_HEIGHT - target_height)
-            game_won = False
-            color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+# Запрос на продолжение игры
+if not show_continue_prompt():
+    running = False
+else:
+    # Сбросим счетчик и переменные для новой игры
+    hit_count = 0
+    target_x = random.randint(0, SCREEN_WIDTH - target_width)
+    target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+    game_won = False
+    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-    else:
-        screen.blit(target_img, (target_x, target_y))
+else:
+screen.blit(target_img, (target_x, target_y))
 
+# Отображение кадров GIF, если игрок выиграл
+if game_won:
+    for frame in confetti_gif_frames:
+        screen.blit(frame, (0, 0))  # Отображаем конфетти в верхнем левом углу
+    for frame in cup_gif_frames:
+        screen.blit(frame, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 50))  # Отображаем кубок в центре
     pygame.display.update()
+    pygame.time.delay(100)  # Задержка между кадрами
+
+pygame.display.update()
 
 pygame.quit()
