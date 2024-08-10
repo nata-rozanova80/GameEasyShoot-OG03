@@ -92,7 +92,13 @@ while running:
             pygame.display.update()
             pygame.time.delay(2000)  # Задержка для отображения сообщения победы
             display_win_message = False  # Скрываем сообщение победы
-
+        # Отображение кадров GIF, если игрок выиграл
+        #if game_won:
+            for frame in confetti_gif_frames:
+                screen.blit(frame, (70, 0))  # Отображаем конфетти в верхнем левом углу
+            screen.blit(cup_img, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 50))  # Отображаем кубок в центре
+            pygame.display.update()
+            pygame.time.delay(2000)  # Задержка между кадрами
 
 
 
@@ -110,13 +116,13 @@ while running:
     else:
         screen.blit(target_img, (target_x, target_y))
 
-    # Отображение кадров GIF, если игрок выиграл
-    if game_won:
-        for frame in confetti_gif_frames:
-            screen.blit(frame, (0, 0))  # Отображаем конфетти в верхнем левом углу
-        screen.blit(cup_img, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 50))  # Отображаем кубок в центре
-        pygame.display.update()
-        pygame.time.delay(100)  # Задержка между кадрами
+    # # Отображение кадров GIF, если игрок выиграл
+    # if game_won:
+    #     for frame in confetti_gif_frames:
+    #         screen.blit(frame, (0, 0))  # Отображаем конфетти в верхнем левом углу
+    #     screen.blit(cup_img, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 50))  # Отображаем кубок в центре
+    #     pygame.display.update()
+    #     pygame.time.delay(100)  # Задержка между кадрами
 
     pygame.display.update()
 
