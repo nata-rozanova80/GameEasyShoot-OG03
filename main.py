@@ -14,7 +14,7 @@ pygame.display.set_caption("Игра Тир")
 icon = pygame.image.load("C:\\Users\\Иван\\Documents\\GitHub\\GameEasyShoot\\image\\icon.jpeg")
 pygame.display.set_icon(icon)
 
-target_img = pygame.image.load("image\\t2.png")
+target_img = pygame.image.load("image\\target.png")
 target_width = 50
 target_height = 50
 
