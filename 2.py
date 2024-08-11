@@ -1,4 +1,3 @@
-#to gif
 import pygame
 import random
 from PIL import Image
@@ -54,7 +53,6 @@ def show_continue_prompt():
                 elif event.key == pygame.K_n:  # N для выхода
                     return False
 
-
 # Загрузка GIF с конфетти
 confetti_gif_frames = load_gif("image\\konfetti-49.gif")
 # Загрузка PNG с кубком
@@ -98,17 +96,29 @@ while running:
             text = font.render("Ты победил!", True, (255, 0, 0))
             screen.blit(text, (SCREEN_WIDTH // 2 - text.get_width() // 2, SCREEN_HEIGHT // 2 - text.get_height() // 2))
             pygame.display.update()
-            pygame.time.delay(1000)  # Задержка для отображения сообщения победы
+            pygame.time.delay(1500)  # Задержка для отображения сообщения победы
             display_win_message = False  # Скрываем сообщение победы
 
         # Обновляем кадры конфетти
         if pygame.time.get_ticks() - last_confetti_update > confetti_frame_delay:
-            current_confetti_frame = (current_confetti_frame + 1) % len(confetti_gif_frames)  # Переход к следующему кадру
+            current_confetti_frame = (current_confetti_frame + 1) % len \
+                (confetti_gif_frames)  # Переход к следующему кадру
             last_confetti_update = pygame.time.get_ticks()  # Обновляем время последнего обновления кадра
 
-        screen.blit(confetti_gif_frames[current_confetti_frame], (90, 0))  # Отображаем текущий кадр конфетти
-       # screen.blit(cup_img, (SCREEN_WIDTH // 2 - 40, SCREEN_HEIGHT // 2 - 60))  # Отображаем кубок в центре
-        screen.blit(cup_img, (300, 300))  # Отображаем кубок
+        screen.blit(confetti_gif_frames[current_confetti_frame], (70, 0))  # Отображаем текущий кадр конфетти
+        screen.blit(cup_img, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 50))  # Отображаем кубок в центре
+
+        # Запрос на продолжение игры
+        if not show_continue_prompt():
+            running = False
+        else:
+            # Сбросим счетчик и переменные для новой игры
+            hit_count = 0
+            target_x = random.randint(0, SCREEN_WIDTH - target_width)
+            target_y = random.randint(0, SCREEN_HEIGHT - target_height)
+            game_won = False
+            color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
     else:
         screen.blit(target_img, (target_x, target_y))
 
