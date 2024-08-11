@@ -53,6 +53,7 @@ python main.py
 
 ## Контакты
 Если у вас есть вопросы или предложения, вы можете связаться со мной:
+
 NATA.ROZANOVA80@GMAIL.COM
 
 https://github.com/user-attachments/assets/332a9fed-97b5-4125-8fcd-e901bf58d0a3
