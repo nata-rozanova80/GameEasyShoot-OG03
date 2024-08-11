@@ -56,7 +56,7 @@ python main.py
 
 NATA.ROZANOVA80@GMAIL.COM
 
-https://github.com/user-attachments/assets/332a9fed-97b5-4125-8fcd-e901bf58d0a3
+https://github.com/nata-rozanova80/GameEasyShoot.git
 
 
 ---
