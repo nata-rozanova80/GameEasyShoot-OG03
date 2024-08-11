@@ -21,7 +21,7 @@ pip install pygame
 ## Использование
 1. Скачайте или клонируйте репозиторий:
 
-git clone https://github.com/ваш_репозиторий/konfetti_game.git
+git clone https://github.com/ваш_репозиторий/GameEasyShoot.git
 
 2. Перейдите в каталог проекта:
 
@@ -54,6 +54,7 @@ python main.py
 ## Контакты
 Если у вас есть вопросы или предложения, вы можете связаться со мной:
 NATA.ROZANOVA80@GMAIL.COM
+
 https://github.com/user-attachments/assets/332a9fed-97b5-4125-8fcd-e901bf58d0a3
 
 
