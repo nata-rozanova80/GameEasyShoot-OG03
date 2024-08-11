@@ -93,6 +93,9 @@ while running:
                 display_win_message = True
 
     if game_won:
+        # Устанавливаем цвет фона (белый)
+        background_color = (255, 255, 255)  # RGB код для белого
+        screen.fill(background_color)
         if display_win_message:
             text = font.render("Ты победил!", True, (255, 0, 0))
             screen.blit(text, (SCREEN_WIDTH // 2 - text.get_width() // 2, SCREEN_HEIGHT // 2 - text.get_height() // 2))
@@ -105,9 +108,9 @@ while running:
             current_confetti_frame = (current_confetti_frame + 1) % len(confetti_gif_frames)  # Переход к следующему кадру
             last_confetti_update = pygame.time.get_ticks()  # Обновляем время последнего обновления кадра
 
-        screen.blit(confetti_gif_frames[current_confetti_frame], (90, 0))  # Отображаем текущий кадр конфетти
+        screen.blit(confetti_gif_frames[current_confetti_frame], (130, 0))  # Отображаем текущий кадр конфетти
        # screen.blit(cup_img, (SCREEN_WIDTH // 2 - 40, SCREEN_HEIGHT // 2 - 60))  # Отображаем кубок в центре
-        screen.blit(cup_img, (300, 300))  # Отображаем кубок
+        screen.blit(cup_img, (340, 300))  # Отображаем кубок
     else:
         screen.blit(target_img, (target_x, target_y))
 
